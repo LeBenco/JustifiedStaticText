@@ -64,7 +64,7 @@ class JustifiedStaticText(wx.StaticText):
         self.line_spacing_factor = line_spacing_factor
         self.justify_last_line = justify_last_line
         self.max_space_width_factor = max_space_width_factor
-        self.Bind(wx.EVT_PAINT, self.onPaint)
+        self.Bind(wx.EVT_PAINT, self._OnPaint)
 
     def SetLabel(self, label):
         """
@@ -84,7 +84,7 @@ class JustifiedStaticText(wx.StaticText):
 
         super().SetLabel(label)
 
-    def onPaint(self, event):
+    def _OnPaint(self, event):
         """
         Callback for paint event. Draws the label
         
@@ -115,7 +115,7 @@ class JustifiedStaticText(wx.StaticText):
             
             if line_width < richtext_width:
                 # if the line fits into the container, it is drawn
-                self.drawJustifiedLine(dc, words, y, i == len(lines) - 1)
+                self._DrawJustifiedLine(dc, words, y, i == len(lines) - 1)
                 
                 # update y position for next line
                 y += dc.GetTextExtent(" ".join(words))[1] + line_spacing
@@ -138,7 +138,7 @@ class JustifiedStaticText(wx.StaticText):
                     if end > start:
                         # most common case, when the inner line contains
                         # several words to display
-                        self.drawJustifiedLine(dc, words[start:end], y,
+                        self._DrawJustifiedLine(dc, words[start:end], y,
                                                end == len(words))
                         
                         # update y position for next line
@@ -149,7 +149,7 @@ class JustifiedStaticText(wx.StaticText):
                     else:
                         # specific case when there when the inner line contains
                         # only one word to display
-                        self.drawJustifiedLine(dc, [words[start]], y, True)
+                        self._DrawJustifiedLine(dc, [words[start]], y, True)
 
                         # update y position for next line
                         y += dc.GetTextExtent(words[start])[1] + line_spacing
@@ -157,7 +157,7 @@ class JustifiedStaticText(wx.StaticText):
                         # go to the beginning of the next inner line
                         start += 1
             
-    def drawJustifiedLine(self, dc, words, y, is_last_line):
+    def _DrawJustifiedLine(self, dc, words, y, is_last_line):
         """
         Draws a line of text with double justification.
         
