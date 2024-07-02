@@ -5,7 +5,7 @@ spacing (as a factor applied to the current font size).
 Justification is greedily determined, meaning that once the word spacing of a line is set, it will not be changed, even if this results in better justification for subsequent lines. Here's the algorithm used:
 ```
 |For each line in the label: 
-|&nbsp;&nbsp;&nbsp;&nbsp;Compute the width of the line considering regular word spacing
+|    Compute the width of the line considering regular word spacing
 |&nbsp;&nbsp;&nbsp;&nbsp;If line width < available width:
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the line without justification
 |&nbsp;&nbsp;&nbsp;&nbsp;Else: 
