@@ -28,3 +28,31 @@ Width for justification = (available width - total words width)
 Single space width = Width for justification / (# of word - 1)
 Draw each word using the calculated space width
 </code>
+
+Here is a simple example using `JustifiedStaticText`:
+```python
+if __name__ == "__main__":
+    app = wx.App()
+    frame = wx.Frame(None, title="Justified Static Text Demo", size=(400, 300))
+    panel = wx.Panel(frame)
+
+    text = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor "
+            "incididunt  ut labore et dolore magna aliqua. Ut enim ad minim "
+            "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
+            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
+            "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+            "Excepteur sint occaecat cupidatat non proident, sunt in culpa "
+            "qui officia deserunt mollit anim id est laborum."""
+    )
+
+    justified_text = JustifiedStaticText(panel, label=text)
+    sizer = wx.BoxSizer(wx.VERTICAL)    
+    sizer.Add(justified_text, proportion=1, flag=wx.EXPAND | wx.ALL, border=10)
+    panel.SetSizer(sizer)
+
+    frame.Show()
+    app.MainLoop()
+```
+
+    
+
