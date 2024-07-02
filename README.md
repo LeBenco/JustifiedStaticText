@@ -3,7 +3,7 @@ Python subclass of `wx.StaticText` that applies double justification to the labe
 spacing (as a factor applied to the current font size).
 
 Justification is greedily determined, meaning that once the word spacing of a line is set, it will not be changed, even if this results in better justification for subsequent lines. Here's the algorithm used:
-<code>
+```
 |For each line in the label: 
 |&nbsp;&nbsp;&nbsp;&nbsp;Compute the width of the line considering regular word spacing
 |&nbsp;&nbsp;&nbsp;&nbsp;If line width < available width:
@@ -14,7 +14,7 @@ Justification is greedily determined, meaning that once the word spacing of a li
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;For each inner line except for the last one:
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the line with double justification
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the last inner line without justification
-</code>      
+```
 
 Note that in reality, the algorithm is a little more detailed. The justification of the last line can be optionally set, and the justification admits a maximum spacing not to be exceeded.
 
