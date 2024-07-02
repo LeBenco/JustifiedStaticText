@@ -1,4 +1,3 @@
-
 ################################################################################
 ############################ Justified Static Text  ############################
 
@@ -79,21 +78,22 @@ class JustifiedStaticText(wx.StaticText):
         dc.SetFont(self.GetFont())
         dc.SetTextForeground(self.GetForegroundColour())
         dc.SetTextBackground(self.GetBackgroundColour())
-        line_spacing = dc.GetFont().GetPointSize() * self.line_spacing_factor
+        
         dc.SetDeviceOrigin(self.GetScrollPos(wx.HORIZONTAL), self.GetScrollPos(wx.VERTICAL))
-
         dc.Clear()
+
         # each line is processed separately
         text = self.GetLabel()
-        # circumvent displaying bug with UTF8 small hyphen until fixed
         lines = text.split("\n")
+        
+        line_spacing = dc.GetFont().GetPointSize() * self.line_spacing_factor
         y = 0
+        richtext_width = self.GetClientSize()[0]
         for i, line in enumerate(lines):
             # the line is splitted into words in order to compute all subsets of
             # words that fit into the width
             words = line.split()
             line_width = dc.GetTextExtent(" ".join(words))[0]
-            richtext_width = self.GetBestSize()[0]
             
             if line_width < richtext_width:
                 # if the line fits into the container, it is drawn
@@ -121,7 +121,7 @@ class JustifiedStaticText(wx.StaticText):
                         # most common case, when the inner line contains
                         # several words to display
                         self.drawJustifiedLine(dc, words[start:end], y,
-                                               i == len(lines) - 1)
+                                               end == len(words))
                         
                         # update y position for next line
                         y += dc.GetTextExtent(" ".join(words[start:end]))[1] + line_spacing
@@ -152,7 +152,7 @@ class JustifiedStaticText(wx.StaticText):
         
         # compute width for all spaces between words
         total_width = sum(dc.GetTextExtent(word)[0] for word in words)
-        available_width = self.GetBestSize()[0]
+        available_width = self.GetClientSize()[0]
         extra_width = available_width - total_width
 
         # compute individual width of a space character
