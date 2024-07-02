@@ -18,6 +18,11 @@ justification for subsequent lines. Here's the algorithm used:
                 Draw the line with double justification
             Draw the last inner line without justification
             
+
+
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+<foreignObject width="100" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml">
 <div style="border-left: 1px solid black;padding-left:25px;margin:5px;">
     For each line in the label
     <div style="border-left: 1px solid black;padding-left:25px;margin:5px;">
@@ -37,14 +42,6 @@ justification for subsequent lines. Here's the algorithm used:
         </div>
     </div>
 </div>
-
-<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-<foreignObject width="100" height="100">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-        <ul>
-            <li>text</li>
-        </ul>
-        <!-- Other embed HTML element/text into SVG -->
     </div>
 </foreignObject>
 </svg>
