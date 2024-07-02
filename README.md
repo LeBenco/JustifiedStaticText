@@ -1,12 +1,8 @@
 # Justified Static Text
-Python subclass of `wx.StaticText` that applies double justification to the label,
-i.e. the text will be aligned vertically on both sides. All options
-from StaticText are applied, plus an extra option allowing to specify line
+Python subclass of `wx.StaticText` that applies double justification to the label, i.e. the text will be aligned vertically on both sides. All options from StaticText are applied, plus an extra option allowing to specify line
 spacing (as a factor applied to the current font size).
 
-Justification is greedily determined, meaning that once the word spacing
-of a line is set, it will not be changed, even if this results in better
-justification for subsequent lines. Here's the algorithm used:
+Justification is greedily determined, meaning that once the word spacing of a line is set, it will not be changed, even if this results in better justification for subsequent lines. Here's the algorithm used:
 <code>
 |For each line in the label: 
 |&nbsp;&nbsp;&nbsp;&nbsp;Compute the width of the line considering regular word spacing
@@ -20,9 +16,9 @@ justification for subsequent lines. Here's the algorithm used:
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the last inner line without justification
 </code>      
 
+Note that in reality, the algorithm is a little more detailed. The justification of the last line can be optionally set, and the justification admits a maximum spacing not to be exceeded.
 
-Drawing a line of text with double justification is done with this
-algorithm, using floating-point precision to ensure precise positioning:
+Drawing a line of text with double justification is done with this algorithm, using floating-point precision to ensure precise positioning:
 <code>
 Width for justification = (available width - total words width)
 Single space width = Width for justification / (# of word - 1)
