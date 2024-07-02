@@ -10,7 +10,7 @@ For each line in the label:
 |    |    Draw the line without justification
 |    Else: 
 |    |    Split the line into multiple inner lines that fit the available width using regular word spacing
-|    |    For each inner line except for the last one:
+|    |    For each inner line except the last one:
 |    |    |    Draw the line with double justification
 |    |    Draw the last inner line without justification
 ```
