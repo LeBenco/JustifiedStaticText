@@ -13,7 +13,8 @@ justification for subsequent lines. Here's the algorithm used:
 |&nbsp;&nbsp;&nbsp;&nbsp;If line width < available width:
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the line without justification
 |&nbsp;&nbsp;&nbsp;&nbsp;Else: 
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Split the line into multiple inner lines that fit the available width considering regular word spacing
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Split the line into multiple inner lines that fit
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the available width considering regular word spacing
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;For each inner line except for the last one:
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the line with double justification
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Draw the last inner line without justification
