@@ -22,6 +22,8 @@ justification for subsequent lines. Here's the algorithm used:
 
 Drawing a line of text with double justification is done with this
 algorithm, using floating-point precision to ensure precise positioning:
-    Width for justification = (available width - total words width)
-    Single space width = Width for justification / (# of word - 1)
-    Draw each word using the calculated space width
+<code>
+Width for justification = (available width - total words width)
+Single space width = Width for justification / (# of word - 1)
+Draw each word using the calculated space width
+</code>
