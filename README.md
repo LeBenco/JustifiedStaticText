@@ -8,7 +8,7 @@ Justification is greedily determined, meaning that once the word spacing
 of a line is set, it will not be changed, even if this results in better
 justification for subsequent lines. Here's the algorithm used:
 <code>
-    For each line in the label: 
+&nbsp;&nbsp;&nbsp;&nbsp;For each line in the label: 
         Compute the width of the line considering regular word spacing
         If line width < available width:
             Draw the line without justification
