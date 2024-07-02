@@ -6,7 +6,7 @@ Justification is greedily determined, meaning that once the word spacing of a li
 ```
 For each line in the label: 
 |    Compute the width of the line considering regular word spacing
-|    If line width < available width:
+|    If line width < available width
 |    |    Draw the line without justification
 |    Else: 
 |    |    Split the line into inner lines that fit available width using regular word spacing
