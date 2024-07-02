@@ -8,17 +8,17 @@ Justification is greedily determined, meaning that once the word spacing
 of a line is set, it will not be changed, even if this results in better
 justification for subsequent lines. Here's the algorithm used:
 <code>
-&nbsp;&nbsp;&nbsp;&nbsp;For each line in the label: 
-        Compute the width of the line considering regular word spacing
-        If line width < available width:
-            Draw the line without justification
-        Else: 
-            Split the line into multiple inner lines that fit the available
-                width considering regular word spacing
-            For each inner line except for the last one:
-                Draw the line with double justification
-            Draw the last inner line without justification
-      </code>      
+For each line in the label: 
+&nbsp;&nbsp;&nbsp;&nbsp;Compute the width of the line considering regular word spacing
+&nbsp;&nbsp;&nbsp;&nbsp;If line width < available width:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Draw the line without justification
+&nbsp;&nbsp;&nbsp;&nbsp;Else: 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Split the line into multiple inner lines that fit the available
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width considering regular word spacing
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For each inner line except for the last one:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Draw the line with double justification
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Draw the last inner line without justification
+</code>      
 
 
 Drawing a line of text with double justification is done with this
