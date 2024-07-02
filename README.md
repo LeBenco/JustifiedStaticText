@@ -9,7 +9,7 @@ For each line in the label:
 |    If line width < available width:
 |    |    Draw the line without justification
 |    Else: 
-|    |    Split the line into multiple inner lines that fit the available width using regular word spacing
+|    |    Split the line into inner lines that fit available width using regular word spacing
 |    |    For each inner line except the last one:
 |    |    |    Draw the line with double justification
 |    |    Draw the last inner line without justification
