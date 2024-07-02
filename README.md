@@ -8,9 +8,9 @@ For each line in the label:
 |    Compute the width of the line considering regular word spacing
 |    If line width < available width
 |    |    Draw the line without justification
-|    Else: 
+|    Else:
 |    |    Split the line into inner lines that fit available width using regular word spacing
-|    |    For each inner line except the last one:
+|    |    For each inner line except the last one
 |    |    |    Draw the line with double justification
 |    |    Draw the last inner line without justification
 ```
