@@ -15,13 +15,15 @@ For each line in the label:
 |    |    Draw the last inner line without justification
 ```
 
-Note that in reality, the algorithm is a little more detailed. The justification of the last line can be optionally set, and the justification admits a maximum spacing not to be exceeded.
+Note that in reality, the algorithm is a little more, since the justification of the last line can be optionally set.
 
 Drawing a line of text with double justification is done with this algorithm, using floating-point precision to ensure precise positioning:<br>
 ```
 Width for justification = (available width - total words width)
 Single space width = Width for justification / (# of word - 1)
-Draw each word using the calculated space width
+If single space width > maximum allowed space width:
+|    single space width <-$\larrow$ maximum allowed space width
+Draw each word using the calculated single space width
 ```
 
 Here is a simple example using `JustifiedStaticText`:
