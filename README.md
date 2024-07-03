@@ -15,7 +15,7 @@ For each line in the label:
 |    |    Draw the last inner line without justification
 ```
 
-Note that in reality, the algorithm is a little more, since the justification of the last (or only) line can be optionally set.
+Note that in reality, the algorithm is a little more, since the justification of the last (or only, for short lines) inner line can be optionally set.
 
 Drawing a line of text with double justification is done with this algorithm, using floating-point precision to ensure precise positioning:<br>
 ```
