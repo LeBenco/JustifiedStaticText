@@ -76,8 +76,8 @@ class JustifiedStaticText(wx.StaticText):
 
     def SetLabel(self, label):
         """
-        Updates label. if `non_breaking_spaces` is set, spaces will be replaced
-        with non-breaking spaces wherever relevant (ex: after «)
+        Updates label. if `non_breaking_spaces` is set in constructor call, spaces
+        will be replaced with non-breaking spaces wherever relevant (ex: after «)
         
         * `label`: the new label,
         * `line_spacing_factor`: factor applied to the current font size
