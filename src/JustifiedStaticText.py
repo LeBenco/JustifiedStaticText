@@ -29,7 +29,6 @@ class JustifiedStaticText(wx.StaticText):
     Justification is greedily determined, meaning that once the word spacing
     of a line is set, it will not be changed, even if this results in better
     justification for subsequent lines. Here's the algorithm used:
-    ```
         For each line in the label: 
             Compute the width of the line considering regular word spacing
             If line width < available width:
@@ -40,19 +39,12 @@ class JustifiedStaticText(wx.StaticText):
                 For each inner line except for the last one:
                     Draw the line with double justification
                 Draw the last inner line without justification
-    ```
-    Note that in reality, the algorithm is a little more, since the justification
-    of the last line can be optionally set.
 
-    Drawing a line of text with double justification is done with this algorithm,
-    using floating-point precision to ensure precise positioning:
-    ```
+    Drawing a line of text with double justification is done with this
+    algorithm, using floating-point precision to ensure precise positioning:
         Width for justification = (available width - total words width)
         Single space width = Width for justification / (# of word - 1)
-        If single space width > maximum allowed space width:
-        |    single space width <- maximum allowed space width
-        Draw each word using the calculated single space width
-    ```
+        Draw each word using the calculated space width
     """
     
     def __init__(self, parent, line_spacing_factor=0,
@@ -60,32 +52,52 @@ class JustifiedStaticText(wx.StaticText):
                  max_space_width_factor= 1.6, *args, **kwargs):
         """
         Constructor.
-        
-        * `parent`: wx parent,
-        * `line_spacing_factor`: factor applied to the current font size
-            in order to compute line spacing
-        * `non_breaking_spaces`: Boolean. If set, common rules for non-breaking
-            spaces are applied (ex: forbid wrap after «)
+
+        Parameters:
+        * `parent`: wx parent widget.
+        * `line_spacing_factor` (float): Factor applied to the current font size
+            to compute line spacing. Default is 0.
+        * `non_breaking_spaces` (bool): If True, common rules for non-breaking
+            spaces are applied (e.g., forbid wrap after «). Default is True.
+        * `justify_last_line` (bool): If True, the last line of text will be justified.
+            Default is False.
+        * `max_space_width_factor` (float): Maximum width factor for spaces when justifying.
+            Default is 1.6.
+        * `*args`: Additional positional arguments passed to wx.StaticText constructor.
+        * `**kwargs`: Additional keyword arguments passed to wx.StaticText constructor.
+
+        Note:
+        The `style` parameter (either in args or kwargs) will always have
+        `wx.ST_NO_AUTORESIZE` added to it. If `style` is not provided, it will
+        be set to `wx.ST_NO_AUTORESIZE`.
         """
-        self.non_breaking_spaces = non_breaking_spaces
-        super().__init__(parent, style=wx.ST_NO_AUTORESIZE, *args, **kwargs)
-        self.line_spacing_factor = line_spacing_factor
-        self.justify_last_line = justify_last_line
-        self.max_space_width_factor = max_space_width_factor
+        self._nonBreakingSpaces = non_breaking_spaces
+        
+        sig = inspect.signature(wx.StaticText.__init__).parameters
+        # Update style in args or kwargs with wx.ST_NO_AUTORESIZE
+        if "style" in sig:
+            args_list = list(args)
+            style_index = list(sig).index("style")
+            args_list[style_index] = args_list[style_index] | wx.ST_NO_AUTORESIZE
+            args = tuple(args_list)
+        else:
+            kwargs["style"] = kwargs.get("style", 0) | wx.ST_NO_AUTORESIZE
+
+        # Call parent constructor
+        super().__init__(parent, *args, **kwargs)
+        self._lineSpacingFactor = line_spacing_factor
+        self._justifyLastLine = justify_last_line
+        self._maxSpaceWidthFactor = max_space_width_factor
         self.Bind(wx.EVT_PAINT, self._OnPaint)
 
     def SetLabel(self, label):
         """
-        Updates label. if `non_breaking_spaces` is set in constructor call, spaces
-        will be replaced with non-breaking spaces wherever relevant (ex: after «)
+        Updates label. if `non_breaking_spaces` is set, spaces will be replaced
+        with non-breaking spaces wherever relevant (ex: after «)
         
-        * `label`: the new label,
-        * `line_spacing_factor`: factor applied to the current font size
-            in order to compute line spacing
-        * `non_breaking_spaces`: Boolean. If set, common rules for non breaking
-            spaces are applied (ex: forbid wrap after «)
+        * `label`: the new label
         """
-        if self.non_breaking_spaces:
+        if self._nonBreakingSpaces:
             chars = [":", "\"", "'", ";", "«", "»"]
             for char in chars:
                 label.replace(char+" ", char+u"\u00A0")
@@ -112,7 +124,7 @@ class JustifiedStaticText(wx.StaticText):
         text = self.GetLabel()
         lines = text.split("\n")
         
-        line_spacing = dc.GetFont().GetPointSize() * self.line_spacing_factor
+        line_spacing = dc.GetFont().GetPointSize() * self._lineSpacingFactor
         y = 0
         richtext_width = self.GetClientSize()[0]
         for i, line in enumerate(lines):
@@ -186,10 +198,10 @@ class JustifiedStaticText(wx.StaticText):
         width_per_space = 0
         if num_spaces > 0:
             if is_last_line:
-                if self.justify_last_line:
+                if self._justifyLastLine:
                     width_per_space = min(
                         extra_width / num_spaces,
-                        self.max_space_width_factor * dc.GetTextExtent(" ")[0])
+                        self._maxSpaceWidthFactor * dc.GetTextExtent(" ")[0])
                 else:
                     width_per_space = dc.GetTextExtent(" ")[0]
             else:
