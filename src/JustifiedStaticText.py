@@ -54,6 +54,8 @@ class JustifiedStaticText(wx.StaticText):
     |    single space width <- maximum allowed space width
     Draw each word using the calculated single space width
     ```
+    `maximum allowed space width` is defined proportionnaly to the regular
+    width of a space character.
     """
     
     def __init__(self, parent, line_spacing_factor=0,
