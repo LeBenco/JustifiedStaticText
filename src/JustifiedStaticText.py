@@ -117,7 +117,7 @@ class JustifiedStaticText(wx.StaticText):
         """
         Callback for paint event. Draws the label
         
-        * `event`: the paint event,
+        * `event`: the paint event
         """
 
         # set up drawing context and clear widget
