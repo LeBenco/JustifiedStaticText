@@ -29,6 +29,7 @@ class JustifiedStaticText(wx.StaticText):
     Justification is greedily determined, meaning that once the word spacing
     of a line is set, it will not be changed, even if this results in better
     justification for subsequent lines. Here's the algorithm used:
+    ```
         For each line in the label: 
             Compute the width of the line considering regular word spacing
             If line width < available width:
@@ -39,12 +40,19 @@ class JustifiedStaticText(wx.StaticText):
                 For each inner line except for the last one:
                     Draw the line with double justification
                 Draw the last inner line without justification
+    ```
+    Note that in reality, the algorithm is a little more, since the justification
+    of the last line can be optionally set.
 
-    Drawing a line of text with double justification is done with this
-    algorithm, using floating-point precision to ensure precise positioning:
+    Drawing a line of text with double justification is done with this algorithm,
+    using floating-point precision to ensure precise positioning:
+    ```
         Width for justification = (available width - total words width)
         Single space width = Width for justification / (# of word - 1)
-        Draw each word using the calculated space width
+        If single space width > maximum allowed space width:
+        |    single space width <- maximum allowed space width
+        Draw each word using the calculated single space width
+    ```
     """
     
     def __init__(self, parent, line_spacing_factor=0,
