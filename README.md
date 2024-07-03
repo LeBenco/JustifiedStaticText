@@ -25,6 +25,7 @@ If single space width > maximum allowed space width:
 |    single space width <- maximum allowed space width
 Draw each word using the calculated single space width
 ```
+`maximum allowed space width` is defined proportionnaly to the regular width of a space character.
 
 Here is a simple example using `JustifiedStaticText`:
 ```python
