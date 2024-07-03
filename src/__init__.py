@@ -1,2 +1,3 @@
-import wx
 import sys
+import inspect
+import wx
