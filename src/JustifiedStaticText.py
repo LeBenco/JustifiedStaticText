@@ -43,7 +43,7 @@ class JustifiedStaticText(wx.StaticText):
     ```
 
     Note that in reality, the algorithm is a little more, since the justification of
-    the last line can be optionally set.
+    the last (or only) inner line can be optionally set.
     
     Drawing a line of text with double justification is done with this algorithm,
     using floating-point precision to ensure precise positioning:
