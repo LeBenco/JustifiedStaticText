@@ -5,8 +5,8 @@ spacing (as a factor applied to the current font size).
 Justification is greedily determined, meaning that once the word spacing of a line is set, it will not be changed, even if this results in better justification for subsequent lines. Here's the algorithm used:
 ```
 For each line in the label: 
-│    Compute _Line width_ using regular word spacing
-│    If Line width ≤ available width:
+│    Compute line width using regular word spacing
+│    If line width ≤ available width:
 │    │    Draw the line without justification
 │    Else:
 │    │    Split the line into inner lines that fit available width using regular word spacing
@@ -19,16 +19,16 @@ Note that in reality, the algorithm is a little more elaborate, since the justif
 
 Drawing a line of text with double justification is done with this algorithm, using floating-point precision to ensure precise positioning:<br>
 ```
-                      (Available width - Total words width)
-Single space width 🡨 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
+                      (available width - total words width)
+single space width 🡨 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
                                 (# of words-1)
                                 
-If Single space width > Maximum allowed space width:
-│    Single space width 🡨 Maximum allowed space width
+If single space width > maximum allowed space width:
+│    single space width 🡨 maximum allowed space width
 
-Draw each word using the calculated Single space width
+Draw each word using the calculated single space width
 ```
-`Maximum allowed space width` is defined proportionnaly to the regular width of a space character.
+`maximum allowed space width` is defined proportionnaly to the regular width of a space character.
 
 Here is a simple example using `JustifiedStaticText`:
 ```python
