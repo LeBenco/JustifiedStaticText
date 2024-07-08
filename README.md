@@ -19,15 +19,15 @@ Note that in reality, the algorithm is a little more elaborate, since the justif
 
 Drawing a line of text with double justification is done with this algorithm, using floating-point precision to ensure precise positioning:<br>
 ```
-Width for justification 🡐 (available width - total words width)
+Width for justification 🡐 (Available width - Total words width)
                        Width for justification
 Single space width 🡐 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
                            (# of word-1)
-If single space width > maximum allowed space width:
-│    single space width 🡐 maximum allowed space width
-Draw each word using the calculated single space width
+If Single space width > Maximum allowed space width:
+│    Single space width 🡐 Maximum allowed space width
+Draw each word using the calculated Single space width
 ```
-`maximum allowed space width` is defined proportionnaly to the regular width of a space character.
+`Maximum allowed space width` is defined proportionnaly to the regular width of a space character.
 
 Here is a simple example using `JustifiedStaticText`:
 ```python
