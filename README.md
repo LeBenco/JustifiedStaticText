@@ -22,7 +22,7 @@ Drawing a line of text with double justification is done with this algorithm, us
 Width for justification 🡐 (Available width - Total words width)
                        Width for justification
 Single space width 🡐 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
-                           (# of word-1)
+                           (# of words-1)
 If Single space width > Maximum allowed space width:
 │    Single space width 🡐 Maximum allowed space width
 Draw each word using the calculated Single space width
