@@ -19,13 +19,13 @@ Note that in reality, the algorithm is a little more elaborate, since the justif
 
 Drawing a line of text with double justification is done with this algorithm, using floating-point precision to ensure precise positioning:<br>
 ```
-Width for justification 🡐 (Available width - Total words width)
-                       Width for justification
-Single space width 🡐 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
-                           (# of words-1)
-If Single space width > Maximum allowed space width:
-│    Single space width 🡐 Maximum allowed space width
-Draw each word using the calculated Single space width
+  Width for justification 🡰 (Available width - Total words width)
+                         Width for justification
+  Single space width 🡰 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
+                             (# of words-1)
+  If Single space width > Maximum allowed space width:
+  │    Single space width 🡰 Maximum allowed space width
+  Draw each word using the calculated Single space width
 ```
 `Maximum allowed space width` is defined proportionnaly to the regular width of a space character.
 
