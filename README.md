@@ -2,6 +2,8 @@
 Python subclass of `wx.StaticText` that applies double justification to the label, i.e. the text will be aligned vertically on both sides. All options from StaticText are applied, plus an extra option allowing to specify line
 spacing (as a factor applied to the current font size).
 
+Please note that this is a proof of concept and may require adaptation to meet specific needs. 
+
 Justification is greedily determined, meaning that once the word spacing of a line is set, it will not be changed, even if this results in better justification for subsequent lines. Here's the algorithm used:
 ```
 For each line in the label: 
