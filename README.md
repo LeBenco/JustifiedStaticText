@@ -27,7 +27,7 @@ single space width 🡨 ⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺
                                 
 single space width 🡨 min(single space width, maximum allowed space width)
 
-Draw each word using the calculated single space width
+Draw each word, spacing them by the calculated space width
 ```
 `maximum allowed space width` is defined proportionnaly to the regular width of a space character.
 
