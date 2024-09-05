@@ -33,7 +33,7 @@ class JustifiedStaticText(wx.StaticText):
     spacing (as a factor applied to the current font size).
 
     Justification is greedily determined, meaning that once the word spacing of
-    a line is set, it will not be changed, even if this would results in better
+    a line is set, it will not be changed, even if this would result in better
     justification for subsequent lines. Here's the algorithm used:
     ```
     For each line in the label: 
