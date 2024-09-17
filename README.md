@@ -35,7 +35,7 @@ Here is a simple example using `JustifiedStaticText`:
 ```python
 if __name__ == "__main__":
     app = wx.App()
-    frame = wx.Frame(None, title="Justified Static Text Demo", size=(400, 300))
+    frame = wx.Frame(None, title="Justified Static Text Demo", size=(400, 165))
     panel = wx.Panel(frame)
 
     text = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  do "
@@ -57,5 +57,6 @@ if __name__ == "__main__":
     app.MainLoop()
 ```
 
-    
+which produces this result:
 
+![JST](https://github.com/user-attachments/assets/98d21e2a-0ed5-4eff-bc87-93adafacfce1)
